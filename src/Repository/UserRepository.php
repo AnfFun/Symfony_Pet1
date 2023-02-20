@@ -39,6 +39,30 @@ class UserRepository extends ServiceEntityRepository
         }
     }
 
+    public function update(User $user)
+    {
+        $this->getEntityManager()->flush();
+    }
+
+    public function findById($id)
+    {
+        return
+            $this->createQueryBuilder('u')
+                ->andWhere('u.id = :id')
+                ->setParameter('id', $id)
+                ->getQuery()
+                ->getOneOrNullResult();
+    }
+
+    public function findAllUser()
+    {
+        $this->createQueryBuilder('u')
+            ->andWhere('u.id','ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */
