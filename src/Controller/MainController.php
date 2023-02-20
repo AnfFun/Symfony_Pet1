@@ -16,17 +16,10 @@ class MainController extends AbstractController
     {
 //        $this->addUser($em,'Hello@ua.fm');
 
-        return new Response();
+        return $this->render('home.html.twig');
 
     }
 
-    public function addUser(EntityManagerInterface $em,$email)
 
-    {
-        $user = $em->getRepository(User::class);
-        $u = new User();
-        $user->createUser($u,$email);
-
-    }
 
 }
