@@ -45,6 +45,14 @@ class UserRepository extends ServiceEntityRepository
         $em->persist($user);
         $em->flush();
     }
+    public function deleteUser(User $user,$match){
+        $em = $this->getEntityManager();
+        if ($user->getEmail() == $match){
+            $this->remove($user);
+            $em->persist();
+            $em->flush();
+        }
+    }
     public function update(User $user)
     {
         $this->getEntityManager()->flush();

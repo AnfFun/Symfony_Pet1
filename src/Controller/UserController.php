@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
-use http\Client\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,14 +18,13 @@ class UserController extends AbstractController
     }
 
     #[Route('user/addUser')]
-    public function addUserAction(EntityManagerInterface $em, )
+    public function addUserAction(EntityManagerInterface $em,)
     {
         if (!($_POST == Null)) {
             $email = $_POST['email'];
             $this->addUser($em, $email);
             return $this->render('UserConfigAdd.html.twig');
-        }
-        else{
+        } else {
             return $this->render('UserConfigAdd.html.twig');
 
         }
@@ -42,4 +40,9 @@ class UserController extends AbstractController
         $user->createUser($u, $email);
 
     }
+#[Route('user/deleteUser')]
+public function del(){
+    return $this->render('UserConfigDelete.html.twig');
+}
+
 }
