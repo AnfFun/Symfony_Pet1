@@ -39,6 +39,12 @@ class UserRepository extends ServiceEntityRepository
         }
     }
 
+    public function createUser(User $user,$email){
+        $em = $this->getEntityManager();
+        $user->setEmail($email);
+        $em->persist($user);
+        $em->flush();
+    }
     public function update(User $user)
     {
         $this->getEntityManager()->flush();
